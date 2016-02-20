@@ -1,0 +1,21 @@
+﻿<!DOCTYPE html>
+{% extends "base.html" %}
+
+{% block title %}Add_Author{% endblock %}
+
+{% block content %}
+	{% if error %}
+		{% for info in error %}
+			<ul style='color:white; background:red'>{{ info }}</ul>
+		{% endfor %}
+	{% endif %}
+	
+	<form action = "" method = "POST">
+		{{af.as_p}}
+		<input type="submit" value="确认"/>
+	</form>
+	
+	<p>
+		<a href="{% url 'bookmanager.views.Option' %}" >不保存，返回首页</a>
+	</p>
+{% endblock %}

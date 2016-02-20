@@ -1,0 +1,36 @@
+﻿<!DOCTYPE html>
+{% extends "base.html" %}
+
+{% block title %}Detail{% endblock %}
+
+{% block content %}
+	<h1>
+		{{book.Title}}
+	<h1>
+	<p><font size='3'>本书ID:{{book.ISBN}}</font></p>
+	<p><font size='3'>作者：{{author.Name}}</font></p>
+	<p><font size='3'>作者详细信息</font></p>
+	<p>---------------------------</p>
+	<p><font size='2'>作者ID：{{author.AuthorID}}</font></p>
+	<p><font size='2'>年龄：</font>
+	{% if author.Age %}
+		<font size='2'>{{author.Age}}</font></p>
+	{% else %}
+		<font size='2'>不详</font></p>
+	{% endif %}
+	<p><font size='2'>国别：{{author.Country}}</font></p>
+	<p>---------------------------</p>
+	<p><font size='3'>出版商：{{book.Publisher}}</font></p>
+	<p><font size='3'>出版日期：</font>
+	{% if book.PublishDate %}
+		<font size='2'>{{book.PublishDate}}</font></p>
+	{% else %}
+		<font size='2'>不详</font></p>
+	{% endif %}
+	<p><font size='3'>价格：{{book.Price|floatformat:"2"}}</font></p>
+	
+	<a href="{% url 'bookmanager.views.Updatebook' book_pk=book.ISBN%}"><font size='3'>更新此书</font></a>
+	<p>
+		<a href="{% url 'bookmanager.views.Option' %}" >返回首页</a>
+	</p>
+{% endblock %}

@@ -1,0 +1,30 @@
+﻿<!DOCTYPE html>
+{% extends "base.html" %}
+
+{% block title %}Search_result{% endblock %}
+
+{% block content %}
+	{% if books %}
+		{% for book in books %}
+		<li>
+			<a href="{% url 'bookmanager.views.Detail' book_pk=book.ISBN %}">{{ book.Title }}</a>
+			<a href="{% url 'bookmanager.views.Delete' book_pk=book.ISBN author_pk=book.AuthorID %}">删除</a>
+		</li>
+		{% endfor %}
+		<p>
+		<a href="{% url 'bookmanager.views.Addbook' %}">继续添加！</a>
+		</p>
+	{% else %}
+		{% if message %}
+			{% for message in message %}
+				<p>{{message}}， 马上去<a href="{% url 'bookmanager.views.Addauthor' %}">添加！</a></p>
+			{% endfor %}
+		{% else %}
+			<p>该作者没有任何书籍，马上去<a href="{% url 'bookmanager.views.Addbook' %}">添加！</a></p>
+		{% endif %}
+	{% endif %}
+	<p>
+		<a href="{% url 'bookmanager.views.Option' %}" >返回首页</a>
+	</p>
+{% endblock %}
+

@@ -1,0 +1,29 @@
+﻿<!DOCTYPE html>
+{% extends "base.html" %}
+
+{% block title %}Edit_Book{% endblock %}
+
+{% block content %}
+	{% if error %}
+		{% for info in error %}
+			<ul style='color:white; background:red'>{{ info }}</ul>
+		{% endfor %}
+	{% endif %}
+	<p>
+		<a href="{% url 'bookmanager.views.CheckauthorID' %}">查看作者ID</a>
+	</p>
+	
+	{% if book %}
+		<p><font size='5'><b>{{book.Title}}</b></font></p>
+	{% endif %}
+	
+	<form action = "" method = "POST">
+		{{bf.as_p}}
+		<input type="submit" value="保存"/>
+		<input type="reset" value="重置"/>
+	</form>
+	<p>
+		<a href="{% url 'bookmanager.views.Addauthor' %}" >添加新作者</a>
+	</p>
+{% endblock %}
+

@@ -1,0 +1,26 @@
+﻿<!DOCTYPE html>
+{% extends "base.html" %}
+
+{% block title %}Check_AuthorID{% endblock %}
+
+{% block content %}
+	{% if authors %}
+		<p>
+			<a href="{% url 'bookmanager.views.Addauthor' %}">添加新作者</a>
+		</p>
+		<table align="center">
+		<tr>
+			<th>姓名</th>
+			<th>ID</th>
+		</tr>
+		{% for author in authors %}
+			<tr>
+				<th>{{author.Name}}</th>
+				<th>{{author.AuthorID}}</th>
+			</tr>
+		{% endfor %}
+		</table>
+	{% else %}
+		<p>还没有任何作者，<a href="{% url 'bookmanager.views.Addauthor' %}">去添加！</a></p>
+	{% endif %}
+{% endblock %}
